@@ -73,9 +73,9 @@ Start the server
 - Github: [@sin1ter](https://github.com/sin1ter)
 ## Demo
 
-Insert gif or link to demo
 
-Gifs:
+
+# Demo Gifs:
 ![Farmers Market Finder Demo](project_show/1.gif)
 ![Farmers Market Finder Demo](project_show/2.gif)
 ![Farmers Market Finder Demo](project_show/3.gif)
