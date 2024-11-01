@@ -24,7 +24,13 @@
     - Admin can view how many users signed up.
     - Admin can see total number of reports.
     - Admin can manage the reports according to the report reason.
-  
+## Website:
+``` https://symoneastside.pythonanywhere.com/ ```
+# For admin:
+    username: admin
+    password: admin
+
+
 
 ## Run Locally
 
