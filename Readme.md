@@ -37,7 +37,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd movie_management_system
+  cd Movie-Management-System 
 ```
 
 # For Windows
