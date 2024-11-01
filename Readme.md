@@ -27,7 +27,7 @@
 ## Website:
 ``` https://symoneastside.pythonanywhere.com/ ```
 # For admin:
-    username: admin
+    username: admin or admin@example.com
     password: admin
 
 
