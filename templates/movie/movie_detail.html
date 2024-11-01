@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ movie.title }}</h2>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mb-4 shadow">
+                <div class="card-body">
+                    <h3 class="card-title">{{ movie.title }}</h3>
+                    <p class="card-text">{{ movie.description }}</p>
+                    <ul class="list-unstyled mt-3">
+                        <li><strong>Release Date:</strong> {{ movie.released_at }}</li>
+                        <li><strong>Duration:</strong> {{ movie.duration_hours }}h {{ movie.duration_minutes }}m {{ movie.duration_seconds }}s</li>
+                        <li><strong>Genre:</strong> {{ movie.genre }}</li>
+                        <li><strong>Language:</strong> {{ movie.language }}</li>
+                        <li><strong>Created By:</strong> {{ movie.created_by.username }}</li>
+                        <li><strong>Updated At:</strong> {{ movie.updated_at }} </li>
+                        <li><strong>Average Rating:</strong> {{ average_rating }} ({{ total_ratings }} ratings)</li>
+                    </ul>
+
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'detail_movie' movie.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.rating.label }}
+                            {{ form.rating }}  
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Rate Movie</button>
+                    </form>
+                </div>
+                {% if request.user == movie.created_by %}
+                    <div class="card-footer text-right">
+                        <a href="{% url 'update_movie' movie.id %}" class="btn btn-warning">Update</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if movie.created_by != request.user %}
+            <div class="text-center">
+                {% if already_reported %}
+                    <div class="alert alert-info">
+                        You have already reported this movie!
+                    </div>
+                {% else %}
+                    <a href="{% url 'report_movie' movie.id %}" class="btn btn-danger">Report Movie</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

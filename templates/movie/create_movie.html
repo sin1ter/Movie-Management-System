@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container mt-8">
+    <h2 class="text-center">Add New Movie</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.title.label }}<br>
+                        {{ form.title }}<br>
+
+                        {{ form.description.label }}<br>
+                        {{ form.description }}<br>
+
+                        {{ form.released_at.label }}<br>
+                        {{ form.released_at }}<br>
+
+                        <label>Duration:</label><br>
+                        {{ form.hours }} hours<br>
+                        {{ form.minutes }} minutes<br>
+                        {{ form.seconds }} seconds<br>
+
+                        {{ form.genre.label }}<br>
+                        {{ form.genre }}<br>
+
+                        {{ form.language.label }}<br>
+                        {{ form.language }}<br>
+
+                        {{ form.rating.label }}<br>
+                        {{ form.rating }}<br>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Create Movie</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Initialize Flatpickr -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr('.datepicker', {
+            dateFormat: "Y-m-d", // Change this format if needed
+            allowInput: true // Allow text input as well
+        });
+    });
+</script>
+
+<!-- Include Flatpickr CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+{% endblock content %}

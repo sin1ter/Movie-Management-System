@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>All Reports</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Movie</th>
+                    <th>Action</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ report.user.username }}</td>
+                    <td><a href=" {% url 'detail_movie' report.movie.id %} ">{{ report.movie.title }}</a></td>
+                    <td>{{ report.reason }}</td>
+                    <td>
+                        <a href="{% url 'report_delete' report.id %}" class="btn btn-warning btn-sm"> Delete Report </a>
+                        <a href="{% url 'movie_delete' report.movie.id %}" class="btn btn-danger btn-sm"> Delete Movie</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No reports available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

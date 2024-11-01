@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'movie_list' %}">Movie Management</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url "create_movie" %}" class="nav-link">Create Movie</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url "own_movie_list" %}" class="nav-link">Own Movie</a>
+          </li>
+
+          {% if user.is_admin %}
+          <li class="nav-item">
+            <a href="{% url "dashboard" %}" class="nav-link">Dashboard</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link">Welcome, {{ user.username }}</a>
+          </li>
+          <li class="nav-item">
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link nav-link" style="display: inline; color: inherit; cursor: pointer;">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
